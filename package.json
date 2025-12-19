@@ -1,0 +1,41 @@
+{
+  "name": "jobhunter",
+  "version": "1.0.0",
+  "description": "Full-stack job hunting tracker with microservices architecture",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "services/*",
+    "shared/*"
+  ],
+  "scripts": {
+    "dev": "docker-compose up",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:services": "concurrently \"npm:dev:*service\"",
+    "dev:auth": "npm run dev --workspace=auth-service",
+    "dev:task": "npm run dev --workspace=task-service",
+    "dev:panic": "npm run dev --workspace=panic-service",
+    "dev:metrics": "npm run dev --workspace=metrics-service",
+    "dev:integration": "npm run dev --workspace=integration-service",
+    "dev:notification": "npm run dev --workspace=notification-service",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces",
+    "k8s:start": "minikube start",
+    "k8s:deploy": "kubectl apply -f infrastructure/k8s/",
+    "k8s:delete": "kubectl delete -f infrastructure/k8s/"
+  },
+  "keywords": [
+    "job-hunting",
+    "microservices",
+    "nestjs",
+    "nextjs",
+    "aws",
+    "kubernetes"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
