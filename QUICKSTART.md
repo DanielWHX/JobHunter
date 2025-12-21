@@ -47,7 +47,7 @@ docker ps
 # 初始化 DynamoDB 表
 cd infrastructure
 npm install
-npx ts-node dynamodb-tables.ts
+npm run init-db
 cd ..
 ```
 

@@ -39,20 +39,20 @@ export const getDynamoDBClient = () => {
 export const PanicLogsTableSchema = {
   TableName: 'JobHunter-PanicLogs',
   KeySchema: [
-    { AttributeName: 'userId', KeyType: 'HASH' },  // Partition key
-    { AttributeName: 'timestamp', KeyType: 'RANGE' }, // Sort key
+    { AttributeName: 'userId', KeyType: 'HASH' as const },  // Partition key
+    { AttributeName: 'timestamp', KeyType: 'RANGE' as const }, // Sort key
   ],
   AttributeDefinitions: [
-    { AttributeName: 'userId', AttributeType: 'S' },
-    { AttributeName: 'timestamp', AttributeType: 'S' },
-    { AttributeName: 'date', AttributeType: 'S' }, // For GSI
+    { AttributeName: 'userId', AttributeType: 'S' as const }, // String type  
+    { AttributeName: 'timestamp', AttributeType: 'S' as const }, // String type
+    { AttributeName: 'date', AttributeType: 'S' as const }, // For GSI
   ],
   GlobalSecondaryIndexes: [
     {
       IndexName: 'DateIndex',
       KeySchema: [
-        { AttributeName: 'userId', KeyType: 'HASH' },
-        { AttributeName: 'date', KeyType: 'RANGE' },
+        { AttributeName: 'userId', KeyType: 'HASH' as const },
+        { AttributeName: 'date', KeyType: 'RANGE' as const },
       ],
       Projection: { ProjectionType: 'ALL' },
       ProvisionedThroughput: {
@@ -61,7 +61,7 @@ export const PanicLogsTableSchema = {
       },
     },
   ],
-  BillingMode: 'PAY_PER_REQUEST', // On-demand pricing
+  BillingMode: 'PAY_PER_REQUEST' as const, // On-demand pricing
 };
 
 /**
@@ -75,14 +75,14 @@ export const PanicLogsTableSchema = {
 export const DailyMetricsTableSchema = {
   TableName: 'JobHunter-DailyMetrics',
   KeySchema: [
-    { AttributeName: 'userId', KeyType: 'HASH' },
-    { AttributeName: 'date', KeyType: 'RANGE' },
+    { AttributeName: 'userId', KeyType: 'HASH' as const },
+    { AttributeName: 'date', KeyType: 'RANGE' as const },
   ],
   AttributeDefinitions: [
-    { AttributeName: 'userId', AttributeType: 'S' },
-    { AttributeName: 'date', AttributeType: 'S' },
+    { AttributeName: 'userId', AttributeType: 'S' as const },
+    { AttributeName: 'date', AttributeType: 'S' as const },
   ],
-  BillingMode: 'PAY_PER_REQUEST',
+  BillingMode: 'PAY_PER_REQUEST' as const,
 };
 
 /**
@@ -168,7 +168,8 @@ export const initializeTables = async () => {
 };
 
 // Script to run initialization
-if (require.main === module) {
+const isMainModule = import.meta.url === `file://${process.argv[1].replace(/\\/g, '/')}`;
+if (isMainModule) {
   initializeTables()
     .then(() => {
       console.log('All tables initialized successfully');

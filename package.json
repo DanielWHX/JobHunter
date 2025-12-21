@@ -37,5 +37,8 @@
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.956.0"
   }
 }
