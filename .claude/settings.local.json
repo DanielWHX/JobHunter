@@ -4,7 +4,11 @@
       "Bash(npm init:*)",
       "Bash(npx ts-node:*)",
       "Bash(npm install)",
-      "Bash(npm run init-db:*)"
+      "Bash(npm run init-db:*)",
+      "Bash(npx create-next-app:*)",
+      "Bash(npm run dev:*)",
+      "Bash(curl:*)",
+      "Bash(npm install:*)"
     ]
   }
 }

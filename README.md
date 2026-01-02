@@ -82,35 +82,36 @@ JobHunter/
 - **[AWS Setup Guide](docs/deployment/01-AWS-Account-Setup.md)** - Step-by-step AWS configuration
 - **[Complete Setup Guide](SETUP.md)** - Detailed installation and deployment
 
-## Getting Started
+## 🚀 快速开始 (Quick Start)
 
-### Prerequisites
+### ✅ 当前可用功能
+
+**前端任务管理系统**已经可以使用!
+
+```bash
+# 1. 进入前端目录
+cd frontend
+
+# 2. 安装依赖(首次需要)
+npm install
+
+# 3. 启动开发服务器
+npm run dev
+```
+
+**访问地址**: http://localhost:3000 (或自动分配的其他端口)
+
+### 📚 完整文档
+
+- **[快速启动指南](./QUICK_START.md)** - 详细的启动说明
+- **[前端文档](./docs/frontend/)** - 完整的学习文档
+- **[项目总结](./docs/项目总结.md)** - 当前进度和下一步计划
+
+### Prerequisites (后续开发需要)
 - Node.js 18+
 - Docker & Docker Compose
 - AWS Account (Free Tier) - optional for deployment
 - kubectl and minikube (for K8s) - optional for advanced deployment
-
-### Quick Start (10 minutes)
-
-```bash
-# 1. Clone and install
-git clone <your-repo-url>
-cd JobHunter
-npm install --workspaces
-
-# 2. Start databases
-docker-compose up -d postgres redis dynamodb-local
-
-# 3. Start Auth Service
-cd services/auth-service
-npm install
-npm run dev
-
-# 4. Test API
-curl http://localhost:3000/api/auth/health
-```
-
-**See [QUICKSTART.md](QUICKSTART.md) for detailed instructions.**
 
 ### Full Development Setup
 ```bash
