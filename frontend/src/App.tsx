@@ -2,9 +2,11 @@ import { useState } from 'react';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import { Task, CreateTaskInput, TaskStatus } from './types/task';
+import { useLocalStorage } from './hooks/useLocalStorage';
 
 function App() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  // 使用 LocalStorage 持久化任务数据
+  const [tasks, setTasks] = useLocalStorage<Task[]>('jobhunter-tasks', []);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
 
   const handleCreateTask = (input: CreateTaskInput) => {
